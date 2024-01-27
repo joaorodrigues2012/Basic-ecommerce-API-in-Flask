@@ -1,5 +1,3 @@
-from crypt import methods
-
 from flask import Flask, request, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS
@@ -177,6 +175,10 @@ def checkout():
         db.session.delete(cart_item)
     db.session.commit()
     return jsonify({'message': 'Checkout successful. Cart has been cleared.'})
+
+@application.route('/', methods=['GET'])
+def welcome_api():
+    return 'Welcome to the API'
 
 if __name__ == '__main__':
     application.run(debug=True)
